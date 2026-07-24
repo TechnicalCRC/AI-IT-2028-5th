@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>JavaScript Refresher</title>
+  </head>
+  <body>
+    <h1>JavaScript Refresher</h1>
+    <script>
+      //    // var, let, const
+
+      //    //var
+      // //    console.log("Hello World")
+      // //    document.write("Hello World")
+
+      //    var a = 10;
+      //    console.log("a = " + a);
+
+      //    var a = 'Hello'; // re-declaration is allowed in var
+      //    console.log("a = " + a);
+
+      //    a = 40; // re-initialization is allowed in var
+      //    console.log("a = " + a);
+
+      //    // let
+
+      //    let b = 20;
+      //    console.log("b = " + b);
+
+      // //   let b = 40;// re-declaration is not allowed in let
+
+      //    b = 50; // re-initialization is allowed in let
+      //    console.log("b = " + b);
+
+      //    // const
+
+      //    const c = 30;
+      //    console.log("c = " + c)
+      //    console.log("c =", c)
+
+      // //   const c = 67;// re-declaration is not allowed in const
+
+      // //    c = 45;  // re-initialization is not allowed in const
+
+      // functions
+
+      // named - normal - simple function
+
+      //       function show() {
+      //         console.log("In Show function");
+      //       }
+      //       show();
+
+      //       function add(num1, num2) {
+      //         console.log(num1 + num2);
+      //       }
+      //       add(3, 6);
+
+      //       function sub() {
+      //         let a = 5, b = 6;
+      //         return a - b;
+      //       }
+      //       let s = sub();
+      //       console.log(s);
+      //    console.log(sub())
+
+      //    function mul(a,b){
+      //     return(a*b)
+      //    }
+      //    console.log(mul(4,8))
+
+      // function expression
+      //   function print() {
+      //     console.log("print");
+      //   }
+      //   print();
+
+      //   let show = function(a,b,c,d,) {
+      //     console.log("show");
+      //   }
+      // //   show = 10
+      //   show();
+
+      //   let a = 10;
+      //   console.log(a);
+      //   console.log(show())
+      //   document.write(show())
+
+      //   console.log(typeof(a))
+      //   console.log(typeof show)
+
+      // arrow function
+      // function show(){   // named function
+      //   console.log('show')
+      // }
+      // show();
+      // let display = function(){  /// function expression
+      //   console.log('display')
+      // }
+      // display();
+      // let print = ()=>{          // arrow function
+      //   console.log('print')
+      // }
+      // print();
+
+      // let print = () => console.log("Hello print");
+      //     print();
+      
+      // let add = (a ,b)=> a+b;
+      // console.log(add(4,9));
+
+      // let sq = a => a*a;
+      // console.log(sq(9));
+
+      // String
+      // let s = 'Father"s name';
+      // let s1 = "Mother's name";
+
+      // console.log(s)
+      // console.log(s1)
+ 
+      // let name = "Shubham"
+      // let age = 20
+      // console.log("Name : " + name + ", Age : " + age);
+      // console.log(`Student'name   """"""   ''''''' Name : ${name}, Age : ${age} `);
+
+      // Array
+      // let ar = [10,20,30,40,50]
+      // console.log(ar)
+      
+      // let emp = [101, 'Ravi', 1200.43, 'S.E.', 'XYZ',];
+      // console.log(emp)
+
+      // for(let i=0; i<ar.length; i++)
+      // console.log(ar[i])
+
+      // for(let i in emp)
+      // console.log(i + " : "+ emp[i])
+
+      // for(let data of ar)
+      // console.log(data)
+  
+     // spread operator   ...
+    //  let ar = [10,20,30,40,50,60];
+    //  console.log(ar)
+
+    // //  let ar1 = ar;
+    // //  ar1[3] = 100;
+    // //  console.log(ar)
+
+    // let ar2 = [...ar]; // [ar[0], ar[1],ar[2],ar[3],ar[4],ar[5]]
+    // ar2[2] = 50;
+    // console.log(ar);
+
+    // console.log(Math.max(3,6,9,4));
+    // console.log(Math.max(...ar));
+    
+    // let arr1 = [1,2,3,4]
+    // let arr2 = [5,6,7,8]
+    // let arr3 = [10, ...arr1, 11, ...arr2, 12]
+    // console.log(arr3)
+  
+
+   // rest parameter   ...
+  //   function add(a, b, ...ar){
+  //     console.log('Data:')
+  //     console.log(`a=${a}, b=${b}`)
+  //     for(let i of ar)
+  //     console.log(i);
+  //   }
+  //  add();
+  //  add(4);
+  //  add(4,7);
+  //  add(6,3,2,3,4,5,21);
+  //  add(5,2,8,7)
+  //  add(2,9,5)
+
+  //  let x;
+  //  console.log(x)
+  //  console.log(typeof x)
+
+
+  //Array function
+  //forEach
+
+  let ar = [11,22,33,44,55,66]
+  
+  let show = function (num){
+    console.log(num)
+  }
+  ar.forEach(show)
+
+  ar.forEach(function (num){console.log(num)});
+  ar.forEach(num => console.log(num));
+  
+
+  let ar1 = [1,2,3,4,5]
+  console.log(ar1)
+  let square_ar1 = 
+  ar1.map(num => num * num);
+  console.log(square_ar1)
+  </script>
+
+  </body>
+</html>
