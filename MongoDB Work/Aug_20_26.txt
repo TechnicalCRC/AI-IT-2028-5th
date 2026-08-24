@@ -1,0 +1,1796 @@
+Microsoft Windows [Version 10.0.26200.9168]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dell>mongosh
+Current Mongosh Log ID: 6a869a08bdfe3349dc90a330
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.9.2
+Using MongoDB:          8.3.7
+Using Mongosh:          2.9.2
+mongosh 2.10.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-08-13T18:17:34.641+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+AI&IT   144.00 KiB
+CSE&DS  232.00 KiB
+admin    40.00 KiB
+config   36.00 KiB
+local    68.00 KiB
+test> use AI&IT
+switched to db AI&IT
+AI&IT> show collections
+employees
+product
+student
+AI&IT> db.employees.find({}, {_id:0})
+[
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({}, {_id:0}).count()
+12
+AI&IT> db.employees.find({}, {_id:0}).sort({empname:1})
+[
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort({'empname':1})
+[
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort('empname':1)
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:45)
+
+> 1 | db.employees.find({}, {_id:0}).sort('empname':1)
+    |                                              ^
+  2 |
+
+AI&IT> db.employees.find({}, {_id:0}).sort({empName:1})
+[
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort({empName:-1})
+[
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 395, empCompany: 'WTU Cop' }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort({'empAge':1})
+[
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort({'empId':1})
+[
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' }
+]
+AI&IT> db.employees.find({}, {_id:0}).sort({empCompany:1, 'empId':1})
+[
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empName: 'Aditya', empAge: 19, empCompany: 'ABT' },
+  { empName: 'Riddhi', empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empName: 'Aviral Sharma', empId: 223, empCompany: 'ABT' },
+  { empName: 'Himanshi', empId: 276, empAge: 22, empCompany: 'HCL' },
+  {
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empName: 'Pratham', empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empName: 'Piyush', empAge: 45, empCompany: 'YBT', empId: 34 },
+  { empName: 'Lokesh', empId: 479, empAge: 22, empCompany: 'YBT' }
+]
+AI&IT> db.employees.find({}, {_id:0, empName:0}).sort({empCompany:1, 'empId':1})
+[
+  { empId: 201, empAge: 26 },
+  { empAge: 19, empCompany: 'ABT' },
+  { empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empId: 223, empCompany: 'ABT' },
+  { empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empAge: 20, empCompany: 'Infosys', empId: 375 },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empAge: 45, empCompany: 'YBT', empId: 34 },
+  { empId: 479, empAge: 22, empCompany: 'YBT' }
+]
+AI&IT> db.employees.find({}, {_id:0, empName:0}).sort({empCompany:1, 'empId':-1})
+[
+  { empId: 201, empAge: 26 },
+  { empId: 223, empCompany: 'ABT' },
+  { empId: 203, empAge: 25, empCompany: 'ABT' },
+  { empAge: 19, empCompany: 'ABT' },
+  { empId: 276, empAge: 22, empCompany: 'HCL' },
+  { empAge: 20, empCompany: 'Infosys', empId: 375 },
+  { empId: 290, empAge: 29, empCompany: 'TVB' },
+  { empId: 219, empAge: 18, empCompany: 'UEO Tech' },
+  { empId: 395, empCompany: 'WTU Cop' },
+  { empId: 102, empAge: 22, empCompany: 'XYZ' },
+  { empId: 479, empAge: 22, empCompany: 'YBT' },
+  { empAge: 45, empCompany: 'YBT', empId: 34 }
+]
+AI&IT> db.employees.find({}, {_id:0, empName:1, empCompany:1}).sort({empCompany:1, 'empName':-1})
+[
+  { empName: 'Ravi' },
+  { empName: 'Riddhi', empCompany: 'ABT' },
+  { empName: 'Aviral Sharma', empCompany: 'ABT' },
+  { empName: 'Aditya', empCompany: 'ABT' },
+  { empName: 'Himanshi', empCompany: 'HCL' },
+  { empName: 'Alok Srivastava', empCompany: 'Infosys' },
+  { empCompany: 'TVB' },
+  { empName: 'Pratham', empCompany: 'UEO Tech' },
+  { empCompany: 'WTU Cop' },
+  { empName: 'Dev Ranjan', empCompany: 'XYZ' },
+  { empName: 'Piyush', empCompany: 'YBT' },
+  { empName: 'Lokesh', empCompany: 'YBT' }
+]
+AI&IT> db.employees.find({}, {_id:0, empCompany:0}).sort({empAge:1, 'empName':-1})
+[
+  { empName: 'Aviral Sharma', empId: 223 },
+  { empId: 395 },
+  { empName: 'Pratham', empId: 219, empAge: 18 },
+  { empName: 'Aditya', empAge: 19 },
+  { empName: 'Alok Srivastava', empAge: 20, empId: 375 },
+  { empName: 'Lokesh', empId: 479, empAge: 22 },
+  { empName: 'Himanshi', empId: 276, empAge: 22 },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22 },
+  { empName: 'Riddhi', empId: 203, empAge: 25 },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empId: 290, empAge: 29 },
+  { empName: 'Piyush', empAge: 45, empId: 34 }
+]
+AI&IT> db.employees.find({}, {_id:0, empCompany:0}).sort({empAge:1, 'empName':1})
+[
+  { empId: 395 },
+  { empName: 'Aviral Sharma', empId: 223 },
+  { empName: 'Pratham', empId: 219, empAge: 18 },
+  { empName: 'Aditya', empAge: 19 },
+  { empName: 'Alok Srivastava', empAge: 20, empId: 375 },
+  { empName: 'Dev Ranjan', empId: 102, empAge: 22 },
+  { empName: 'Himanshi', empId: 276, empAge: 22 },
+  { empName: 'Lokesh', empId: 479, empAge: 22 },
+  { empName: 'Riddhi', empId: 203, empAge: 25 },
+  { empName: 'Ravi', empId: 201, empAge: 26 },
+  { empId: 290, empAge: 29 },
+  { empName: 'Piyush', empAge: 45, empId: 34 }
+]
+AI&IT> show collections
+employees
+product
+student
+AI&IT> db.student.find()
+
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+| },
+| {
+|  name: 'Shubham', city: 'Noida', skills: ['Python', 'JS', 'DSA']
+| },
+| {
+|  name: 'Aviral', city: 'Ghaziabad', skills: ['C', 'Python']
+| },
+| {
+|  name: 'Tanu', city: 'Delhi', skills: ['Python', 'C++', 'Java']
+| },
+| {
+|  name: 'Manav', city: 'Ghaziabad', skills: ['Python', 'JS', 'C++']
+| },
+| {
+|  name: 'Kush', city: 'Ghaziabad', skills: ['Java', 'JS', 'C', 'C++']
+| },
+| {
+|  name: 'Mayank', city: 'Delhi', skills: ['C', 'C++', 'Java', 'JS']
+| },
+| ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a86a35ebdfe3349dc90a331'),
+    '1': ObjectId('6a86a35ebdfe3349dc90a332'),
+    '2': ObjectId('6a86a35ebdfe3349dc90a333'),
+    '3': ObjectId('6a86a35ebdfe3349dc90a334'),
+    '4': ObjectId('6a86a35ebdfe3349dc90a335'),
+    '5': ObjectId('6a86a35ebdfe3349dc90a336'),
+    '6': ObjectId('6a86a35ebdfe3349dc90a337')
+  }
+}
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.insertMany([
+| {
+|  name: 'Shreya', city: 'Delhi', skills: ['C++', 'Java']
+AI&IT> db.student.find()
+[
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a331'),
+    name: 'Shreya',
+    city: 'Delhi',
+    skills: [ 'C++', 'Java' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a332'),
+    name: 'Shubham',
+    city: 'Noida',
+    skills: [ 'Python', 'JS', 'DSA' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a333'),
+    name: 'Aviral',
+    city: 'Ghaziabad',
+    skills: [ 'C', 'Python' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a334'),
+    name: 'Tanu',
+    city: 'Delhi',
+    skills: [ 'Python', 'C++', 'Java' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a335'),
+    name: 'Manav',
+    city: 'Ghaziabad',
+    skills: [ 'Python', 'JS', 'C++' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a336'),
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  {
+    _id: ObjectId('6a86a35ebdfe3349dc90a337'),
+    name: 'Mayank',
+    city: 'Delhi',
+    skills: [ 'C', 'C++', 'Java', 'JS' ]
+  }
+]
+AI&IT> db.student.find({},{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Shubham', city: 'Noida', skills: [ 'Python', 'JS', 'DSA' ] },
+  { name: 'Aviral', city: 'Ghaziabad', skills: [ 'C', 'Python' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: 'C++'},{_id:0});
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: 'C++'},{_id:0}).count()
+5
+AI&IT> db.student.find({skills: 'C++'},{_id:0}).count()
+5
+AI&IT> db.student.find({skills: 'C++'},{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: ['C++']},{_id:0})
+
+AI&IT> db.student.find({skills: ['C++', 'Java']},{_id:0})
+[ { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] } ]
+AI&IT> db.student.find({skills: ['Java', 'C++']},{_id:0})
+
+AI&IT> db.student.find({skills: { $all: ['Java', 'C++'] }},{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'paper',
+|     qty: 100,
+|     tags: ['red', 'blank', 'plain'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'planner',
+|     qty: 75,
+|     tags: ['blank', 'red'],
+|     dim_cm: [22.85, 30]
+|   },
+|   {
+|     item: 'postcard',
+|     qty: 45,
+|     tags: ['blue'],
+|     dim_cm: [10, 15.25]
+|   }
+| ]);
+|
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a86a832bdfe3349dc90a338'),
+    '1': ObjectId('6a86a832bdfe3349dc90a339'),
+    '2': ObjectId('6a86a832bdfe3349dc90a33a'),
+    '3': ObjectId('6a86a832bdfe3349dc90a33b'),
+    '4': ObjectId('6a86a832bdfe3349dc90a33c')
+  }
+}
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'paper',
+|     qty: 100,
+|     tags: ['red', 'blank', 'plain'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'planner',
+|     qty: 75,
+|     tags: ['blank', 'red'],
+|     dim_cm: [22.85, 30]
+|   },
+|   {
+|     item: 'postcard',
+|     qty: 45,
+|     tags: ['blue'],
+|     dim_cm: [10, 15.25]
+|   }
+| ]);
+|
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a86a835bdfe3349dc90a33d'),
+    '1': ObjectId('6a86a835bdfe3349dc90a33e'),
+    '2': ObjectId('6a86a835bdfe3349dc90a33f'),
+    '3': ObjectId('6a86a835bdfe3349dc90a340'),
+    '4': ObjectId('6a86a835bdfe3349dc90a341')
+  }
+}
+AI&IT> show collections
+employees
+inventory
+product
+student
+AI&IT> db.invertory.find({},{_id:0})
+
+AI&IT> db.inventory.find({},{_id:0})
+[
+  {
+    item: 'journal',
+    qty: 25,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'notebook',
+    qty: 50,
+    tags: [ 'red', 'blank' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'paper',
+    qty: 100,
+    tags: [ 'red', 'blank', 'plain' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'planner',
+    qty: 75,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 22.85, 30 ]
+  },
+  { item: 'postcard', qty: 45, tags: [ 'blue' ], dim_cm: [ 10, 15.25 ] },
+  {
+    item: 'journal',
+    qty: 25,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'notebook',
+    qty: 50,
+    tags: [ 'red', 'blank' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'paper',
+    qty: 100,
+    tags: [ 'red', 'blank', 'plain' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'planner',
+    qty: 75,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 22.85, 30 ]
+  },
+  { item: 'postcard', qty: 45, tags: [ 'blue' ], dim_cm: [ 10, 15.25 ] }
+]
+AI&IT> db.dropCollection('inventory')
+TypeError: db.dropCollection is not a function
+AI&IT> db.inventory.drop()
+true
+AI&IT> show collections
+employees
+product
+student
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'paper',
+|     qty: 100,
+|     tags: ['red', 'blank', 'plain'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'planner',
+|     qty: 75,
+|     tags: ['blank', 'red'],
+|     dim_cm: [22.85, 30]
+|   },
+|   {
+|     item: 'postcard',
+|     qty: 45,
+|     tags: ['blue'],
+|     dim_cm: [10, 15.25]
+|   }
+| ]);
+|
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a86a8c4bdfe3349dc90a342'),
+    '1': ObjectId('6a86a8c4bdfe3349dc90a343'),
+    '2': ObjectId('6a86a8c4bdfe3349dc90a344'),
+    '3': ObjectId('6a86a8c4bdfe3349dc90a345'),
+    '4': ObjectId('6a86a8c4bdfe3349dc90a346')
+  }
+}
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+|     dim_cm: [14, 21]
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+|     tags: ['red', 'blank'],
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+|     qty: 50,
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+|     item: 'notebook',
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+|   {
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([undefined
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([undefined
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([undefined
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([undefined
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.insertMany([
+|   {
+|     item: 'journal',
+|     qty: 25,
+|     tags: ['blank', 'red'],
+|     dim_cm: [14, 21]
+|   },
+AI&IT> db.inventory.find({}, {_id:0})
+[
+  {
+    item: 'journal',
+    qty: 25,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'notebook',
+    qty: 50,
+    tags: [ 'red', 'blank' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'paper',
+    qty: 100,
+    tags: [ 'red', 'blank', 'plain' ],
+    dim_cm: [ 14, 21 ]
+  },
+  {
+    item: 'planner',
+    qty: 75,
+    tags: [ 'blank', 'red' ],
+    dim_cm: [ 22.85, 30 ]
+  },
+  { item: 'postcard', qty: 45, tags: [ 'blue' ], dim_cm: [ 10, 15.25 ] }
+]
+AI&IT> db.inventory.find({}, {_id:0}).count()
+5
+AI&IT> db.inventory.find({}, {_id:0, dim_cm:1})
+[
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 22.85, 30 ] },
+  { dim_cm: [ 10, 15.25 ] }
+]
+AI&IT> db.inventory.find({dim_cm: 14}, {_id:0, dim_cm:1})
+[
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] }
+]
+AI&IT> db.inventory.find({dim_cm: { $gt: 14}}, {_id:0, dim_cm:1})
+[
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 22.85, 30 ] },
+  { dim_cm: [ 10, 15.25 ] }
+]
+AI&IT> db.inventory.find({dim_cm: { $lt: 14}}, {_id:0, dim_cm:1})
+[ { dim_cm: [ 10, 15.25 ] } ]
+AI&IT> db.inventory.find({dim_cm: { $gt: 10,  $lt: 20}}, {_id:0, dim_cm:1})
+[
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 14, 21 ] },
+  { dim_cm: [ 10, 15.25 ] }
+]
+AI&IT> db.student.find({},{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Shubham', city: 'Noida', skills: [ 'Python', 'JS', 'DSA' ] },
+  { name: 'Aviral', city: 'Ghaziabad', skills: [ 'C', 'Python' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: 'C++' },{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({"skills": 'C++' },{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] },
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({'skills.1': 'C++' },{_id:0})
+[
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({'skills.0': 'C++' },{_id:0})
+[ { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] } ]
+AI&IT> db.student.find({'skills.0': 'Java' },{_id:0})
+[
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  }
+]
+AI&IT> db.student.find({'skills.2': 'Java' },{_id:0})
+[
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: { $size: 2} },{_id:0})
+[
+  { name: 'Shreya', city: 'Delhi', skills: [ 'C++', 'Java' ] },
+  { name: 'Aviral', city: 'Ghaziabad', skills: [ 'C', 'Python' ] }
+]
+AI&IT> db.student.find({skills: { $size: 3} },{_id:0})
+[
+  { name: 'Shubham', city: 'Noida', skills: [ 'Python', 'JS', 'DSA' ] },
+  { name: 'Tanu', city: 'Delhi', skills: [ 'Python', 'C++', 'Java' ] },
+  { name: 'Manav', city: 'Ghaziabad', skills: [ 'Python', 'JS', 'C++' ] }
+]
+AI&IT> db.student.find({skills: { $size: 4} },{_id:0})
+[
+  {
+    name: 'Kush',
+    city: 'Ghaziabad',
+    skills: [ 'Java', 'JS', 'C', 'C++' ]
+  },
+  { name: 'Mayank', city: 'Delhi', skills: [ 'C', 'C++', 'Java', 'JS' ] }
+]
+AI&IT> db.student.find({skills: { $size: 1} },{_id:0})
+
+AI&IT> db.students.insertMany( [
+|    { "_id" : 1, "grades" : [ 85, 80, 80 ] },
+|    { "_id" : 2, "grades" : [ 88, 90, 92 ] },
+|    { "_id" : 3, "grades" : [ 85, 100, 90 ] }
+| ] )
+|
+{ acknowledged: true, insertedIds: { '0': 1, '1': 2, '2': 3 } }
+AI&IT> db.students.find()
+[
+  { _id: 1, grades: [ 85, 80, 80 ] },
+  { _id: 2, grades: [ 88, 90, 92 ] },
+  { _id: 3, grades: [ 85, 100, 90 ] }
+]
+AI&IT> db.students.updateOne({_id: 1, grades: 80},
+| { $set: { 'grades.$': 83}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+AI&IT> db.students.find()
+[
+  { _id: 1, grades: [ 85, 83, 80 ] },
+  { _id: 2, grades: [ 88, 90, 92 ] },
+  { _id: 3, grades: [ 85, 100, 90 ] }
+]
+AI&IT> db.students.updateOne({ _id: 1, grades: 80 }, { $set: { 'grades.$[]': 8AI&IT> db.students.updateOne({ _id: 1, grades: 80 },
+| { $set: { 'grades.$[]': 87 }})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+AI&IT> db.students.find()
+[
+  { _id: 1, grades: [ 87, 87, 87 ] },
+  { _id: 2, grades: [ 88, 90, 92 ] },
+  { _id: 3, grades: [ 85, 100, 90 ] }
+]
+AI&IT>

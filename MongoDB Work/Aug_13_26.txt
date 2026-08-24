@@ -1,0 +1,449 @@
+Microsoft Windows [Version 10.0.26200.9168]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dell>mongosh
+Current Mongosh Log ID: 6a7d5d61b4e39fd8589e3e41
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.9.2
+Using MongoDB:          8.3.7
+Using Mongosh:          2.9.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-08-13T11:29:26.170+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use AI&IT
+switched to db AI&IT
+AI&IT> show collections
+employees
+product
+student
+AI&IT> db.product.find()
+[
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15fe'), name: 'p1', price: 160 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15ff'), name: 'p2', price: 430 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1600'), name: 'p3', price: 250 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1601'), name: 'p4', price: 110 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1602'), name: 'p5', price: 130 }
+]
+AI&IT> db.product.updateOne({name:"p4"}, {$set: {price:250}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+AI&IT> db.product.find()
+[
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15fe'), name: 'p1', price: 160 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15ff'), name: 'p2', price: 430 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1600'), name: 'p3', price: 250 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1601'), name: 'p4', price: 250 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1602'), name: 'p5', price: 130 }
+]
+AI&IT> db.product.remove({price:250}, {justOne: 1})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+AI&IT> db.product.find()
+[
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15fe'), name: 'p1', price: 160 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15ff'), name: 'p2', price: 430 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1601'), name: 'p4', price: 250 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1602'), name: 'p5', price: 130 }
+]
+AI&IT> db.product.updateOne({name:"p4"}, {$set: {price:130}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+AI&IT> db.product.find()
+[
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15fe'), name: 'p1', price: 160 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15ff'), name: 'p2', price: 430 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1601'), name: 'p4', price: 130 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd1602'), name: 'p5', price: 130 }
+]
+AI&IT> db.product.remove({price:130})
+{ acknowledged: true, deletedCount: 2 }
+AI&IT> db.product.find()
+[
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15fe'), name: 'p1', price: 160 },
+  { _id: ObjectId('6a7d6b55f4ee3a494dbd15ff'), name: 'p2', price: 430 }
+]
+AI&IT> db.employees.find()
+[
+  {
+    _id: ObjectId('6a6afdffc183837e3ebf4f63'),
+    empName: 'Dev Ranjan',
+    empId: 102,
+    empAge: 22,
+    empCompany: 'XYZ'
+  },
+  {
+    _id: ObjectId('6a718c670ada82f57462a9fd'),
+    empName: 'Riddhi',
+    empId: 203,
+    empAge: 25,
+    empCompany: 'ABC'
+  },
+  {
+    _id: ObjectId('6a718d7b0ada82f57462a9fe'),
+    empName: 'Ravi',
+    empId: 201,
+    empAge: 26
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462a9ff'),
+    empName: 'Aviral Sharma',
+    empId: 223,
+    empCompany: 'XAML'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa01'),
+    empName: 'Himanshi',
+    empId: 276,
+    empAge: 22,
+    empCompany: 'HCL'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa02'),
+    empId: 290,
+    empAge: 29,
+    empCompany: 'TVB'
+  },
+  {
+    _id: ObjectId('6a7191440ada82f57462aa03'),
+    empId: 395,
+    empCompany: 'WTU Cop'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  },
+  {
+    _id: ObjectId('6a7193a60ada82f57462aa04'),
+    empName: 'Piyush',
+    empId: 813,
+    empCompany: 'XAML'
+  },
+  {
+    _id: ObjectId('6a7193a60ada82f57462aa05'),
+    empName: 'Lokesh',
+    empId: 479,
+    empAge: 22,
+    empCompany: 'YBT'
+  },
+  {
+    _id: ObjectId('6a74297c1f093eb0a657bb84'),
+    empName: 'Piyush',
+    empAge: 45
+  },
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.updateOne({empName:"Piyush", empAge: 45},
+| {$set: {empId: 34, empCompany: "RYT"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+AI&IT> db.employees.find({empName: "Piyush"})
+[
+  {
+    _id: ObjectId('6a7193a60ada82f57462aa04'),
+    empName: 'Piyush',
+    empId: 813,
+    empCompany: 'XAML'
+  },
+  {
+    _id: ObjectId('6a74297c1f093eb0a657bb84'),
+    empName: 'Piyush',
+    empAge: 45,
+    empCompany: 'RYT',
+    empId: 34
+  }
+]
+AI&IT> db.employees.deleteOne({empName: "Piyush"})
+{ acknowledged: true, deletedCount: 1 }
+AI&IT> db.employees.find({empName: "Piyush"})
+[
+  {
+    _id: ObjectId('6a74297c1f093eb0a657bb84'),
+    empName: 'Piyush',
+    empAge: 45,
+    empCompany: 'RYT',
+    empId: 34
+  }
+]
+AI&IT> db.employees.find()
+[
+  {
+    _id: ObjectId('6a6afdffc183837e3ebf4f63'),
+    empName: 'Dev Ranjan',
+    empId: 102,
+    empAge: 22,
+    empCompany: 'XYZ'
+  },
+  {
+    _id: ObjectId('6a718c670ada82f57462a9fd'),
+    empName: 'Riddhi',
+    empId: 203,
+    empAge: 25,
+    empCompany: 'ABC'
+  },
+  {
+    _id: ObjectId('6a718d7b0ada82f57462a9fe'),
+    empName: 'Ravi',
+    empId: 201,
+    empAge: 26
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462a9ff'),
+    empName: 'Aviral Sharma',
+    empId: 223,
+    empCompany: 'XAML'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa01'),
+    empName: 'Himanshi',
+    empId: 276,
+    empAge: 22,
+    empCompany: 'HCL'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa02'),
+    empId: 290,
+    empAge: 29,
+    empCompany: 'TVB'
+  },
+  {
+    _id: ObjectId('6a7191440ada82f57462aa03'),
+    empId: 395,
+    empCompany: 'WTU Cop'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  },
+  {
+    _id: ObjectId('6a7193a60ada82f57462aa05'),
+    empName: 'Lokesh',
+    empId: 479,
+    empAge: 22,
+    empCompany: 'YBT'
+  },
+  {
+    _id: ObjectId('6a74297c1f093eb0a657bb84'),
+    empName: 'Piyush',
+    empAge: 45,
+    empCompany: 'RYT',
+    empId: 34
+  },
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({ empAge: {$eq: 20}})
+[
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({ empAge: 20})
+[
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({ empAge: {$gt: 20}})
+[
+  {
+    _id: ObjectId('6a6afdffc183837e3ebf4f63'),
+    empName: 'Dev Ranjan',
+    empId: 102,
+    empAge: 22,
+    empCompany: 'XYZ'
+  },
+  {
+    _id: ObjectId('6a718c670ada82f57462a9fd'),
+    empName: 'Riddhi',
+    empId: 203,
+    empAge: 25,
+    empCompany: 'ABC'
+  },
+  {
+    _id: ObjectId('6a718d7b0ada82f57462a9fe'),
+    empName: 'Ravi',
+    empId: 201,
+    empAge: 26
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa01'),
+    empName: 'Himanshi',
+    empId: 276,
+    empAge: 22,
+    empCompany: 'HCL'
+  },
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa02'),
+    empId: 290,
+    empAge: 29,
+    empCompany: 'TVB'
+  },
+  {
+    _id: ObjectId('6a7193a60ada82f57462aa05'),
+    empName: 'Lokesh',
+    empId: 479,
+    empAge: 22,
+    empCompany: 'YBT'
+  },
+  {
+    _id: ObjectId('6a74297c1f093eb0a657bb84'),
+    empName: 'Piyush',
+    empAge: 45,
+    empCompany: 'RYT',
+    empId: 34
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lt: 20}})
+[
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lte: 20}})
+[
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  },
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lte: 20}})
+[
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  },
+  {
+    _id: ObjectId('6a7d685798e3a829ca87899d'),
+    empName: 'Alok Srivastava',
+    empAge: 20,
+    empCompany: 'Infosys',
+    empId: 375
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lt: 20}})
+[
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  },
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lt: 20}, empName: {$eq: "Pratham"}})
+[
+  {
+    _id: 85,
+    empName: 'Pratham',
+    empId: 219,
+    empAge: 18,
+    empCompany: 'UEO Tech'
+  }
+]
+AI&IT> db.employees.find({ empAge: {$lt: 20}, empName: {$ne: "Pratham"}})
+[
+  {
+    _id: ObjectId('6a718f2e0ada82f57462aa00'),
+    empName: 'Aditya',
+    empAge: 19,
+    empCompany: 'ABT'
+  }
+]
+AI&IT>
