@@ -5,7 +5,8 @@ let insertData = async (document) => {
     await mCon.client.connect();
     console.log("Connection opened...");
     let db = await mCon.client.db(mCon.dbName);
-    let result = await db.collection("department").insertOne(document);
+    let result = 
+    await db.collection("department").insertOne(document);
     console.log(await result);
   } catch (err) {
     console.log(err);

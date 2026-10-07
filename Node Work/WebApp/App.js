@@ -31,7 +31,7 @@ let server = http.createServer(async (req, res) => {
     res.write(
       '<input type="radio" name="deptType" value="Management" /> Management <br> <br>',
     );
-    res.write("<button /> Insert Record </button> <br> <br>");
+    res.write("<button> Insert Record </button> <br> <br>");
     res.write("<hr>");
 
     res.write('</form">');
@@ -55,7 +55,9 @@ let server = http.createServer(async (req, res) => {
 
       let JSONData = {};
 
-      for (let [k, v] of parameters.entries()) JSONData[k] = v;
+      for (let [key, value] of parameters.entries()) 
+        JSONData[key] = value;
+      
       console.log(JSONData);
 
       let jData = JSON.stringify(JSONData);
@@ -68,7 +70,8 @@ let server = http.createServer(async (req, res) => {
     res.statusCode = 302;
     res.setHeader("Location", "/");
     return res.end();
-  } else if (req.url === "/show-record") {
+  } 
+  else if (req.url === "/show-record") {
     res.write("<HTML>");
     res.write("<Head> <title> My Web App</title> </head>");
     res.write("<body>");
@@ -78,19 +81,27 @@ let server = http.createServer(async (req, res) => {
     res.write("<h1> Department Show Record </h1>");
     res.write("<hr> <hr>");
 
-    res.write("<h2>Data will show here </h2>");
-    res.write("<table border='1' width='50%'>");
-    res.write('<th> <td> Department Id </td> <td> Department Name </td> <td> Department Loc </td> <td> Department Type </td> </th>');
+    // res.write("<h2>Data will show here </h2>");
+    res.write("<table border='1' width='80%'>");
+    res.write(`<tr> 
+                  <th> S. No. </th> 
+                  <th> Department Id </th> 
+                  <th> Department Name </th> 
+                  <th> Department Location </th> 
+                  <th> Department Type </th> 
+              </tr>`);
 
     let resultArray = await bLogic.Find();
+    let c = 0
 
-    await resultArray.forEach(data =>{
-    res.write(`<tr> `);
-    res.write(` <td>  ${data.deptId} </td>`);
-    res.write(` <td>  ${data.deptName} </td>`);
-    res.write(`<td>  ${data.deptLoc} </td>`);
-    res.write(`<td>  ${data.deptType} </td>`);
-    res.write(`</tr>`);
+    await resultArray.forEach((data) =>{
+    res.write(`<tr> 
+                 <td style='text-align: center'>  ${++c} </td>
+                 <td style='text-align: center'>  ${data.deptId} </td>
+                 <td style='text-align: center'>  ${data.deptName} </td>
+                 <td>  ${data.deptLoc} </td>
+                <td>  ${data.deptType} </td>
+            </tr>`);
     });
 
     res.write("</table>");

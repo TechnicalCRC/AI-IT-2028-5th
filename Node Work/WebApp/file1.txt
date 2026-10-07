@@ -1,1 +1,1 @@
-{"deptId":"179","deptName":"BCA","deptLoc":"D Block","deptType":"Management"}
+{"deptId":"154","deptName":"CS-DS","deptLoc":"4th Floor, C Block","deptType":"Engineering"}
